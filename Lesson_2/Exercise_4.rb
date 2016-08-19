@@ -1,12 +1,10 @@
-vowels_hash = Hash.new
+vowels_hash = {}
 
 alphabets = ('а'..'я').to_a
-vowels = %w(а е ё и о у ы э ю я)
+vowels = %w(а е и о у ы э ю я)
 
-alphabets.each do |letters|
-  if vowels.include? letters
-    vowels_hash[letters] = alphabets.index(letters) + 1
-  end
+vowels.each do |letter|
+  vowels_hash[letter] = alphabets.index(letter) + 1
 end
 
 puts "#{vowels_hash}"
