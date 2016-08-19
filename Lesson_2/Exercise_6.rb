@@ -1,18 +1,16 @@
-name = 0
 sum = 0
-purchase = Hash.new
-price_dep_count = Array.new
+purchase = {}
+price_dep_count = {}
 
-while name != "стоп" do
+loop do
   puts "Название товара:"
   name = gets.chomp
   if name == "стоп"
-    price_dep_count.each do |x|
-      sum += x
+    price_dep_count.each do |name,sum|
+      puts "Итого за товар: #{name} - #{sum}"
     end
-
+    puts "Общая сумма: #{sum}"
     puts "Покупки в хеше: #{purchase}"
-    puts "Итоговая сумма #{sum}"
     break
   else
     puts "Цена за единицу:"
@@ -21,8 +19,8 @@ while name != "стоп" do
     count = gets.chomp.to_f
 
     purchase[name] = {price => count}
-    price_dep_count.push(price * count)
+    sum += price * count
+    price_dep_count[name] = price * count
 
   end
 end
-
