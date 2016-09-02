@@ -1,5 +1,5 @@
 class Station
-  attr_reader :name, :trains
+  attr_reader :name
 
   def initialize(name)
     @name = name
@@ -9,8 +9,8 @@ class Station
 
   def train_in(train)
     if @type1.include?(train) || @type2.include?(train)
-      puts "Поезд с таким номером уже на станции!"
-    elsif train.type == "G"
+      puts 'Поезд с таким номером уже на станции!'
+    elsif train.type == 'G'
       @type1 << train
       puts "Прибыл грузовой поезд #{train.number} на станцию #{name}"
     else
@@ -23,10 +23,10 @@ class Station
     puts "Отправлен поезд #{train.number} со станции #{name}" if @type1.delete(train) || @type2.delete(train)
   end
 
-  def train_list(type="All")
-    if type == "G"
+  def train_list(type='All')
+    if type == 'G'
       puts "Список грузовых поездов: #{@type1}"
-    elsif type == "P"
+    elsif type == 'P'
       puts "Список пассажирских поездов: #{@type2}"
     else
       puts "Полный список поездов на станции #{@type1}, #{@type2}"
@@ -92,14 +92,14 @@ class Train
   def next_station
     @next_station = @route[@route.index(@current_station) + 1] if @current_station != @route.last
   end
-
+  
   def prev_station
     @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
   end
 
   def print_train_position
     if prev_station.nil? == true
-      puts "Поезд находится на начальной станции"
+      puts 'Поезд находится на начальной станции'
     else
       puts "Предыдущая станция #{@prev_station}"
     end
@@ -107,7 +107,7 @@ class Train
     puts "Текущая станция #{@current_station}"
 
     if next_station.nil? == true
-      puts "Поезд находится на конечной станции"
+      puts 'Поезд находится на конечной станции'
     else
       puts "Следующая станция станция #{@next_station}"
     end
