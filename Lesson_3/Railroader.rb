@@ -3,46 +3,56 @@ class Station
 
   def initialize(name)
     @name = name
-    @trains = []
+    @type1= []  #G - грузовой
+    @type2= []  #P - пассажирский
   end
 
   def train_in(train)
-    @trains << train
-    puts "Прибыл поезд #{train.number} на станцию #{name}"
+    if @type1.include?(train) || @type2.include?(train)
+      puts "Поезд с таким номером уже на станции!"
+    elsif train.type == "G"
+      @type1 << train
+      puts "Прибыл грузовой поезд #{train.number} на станцию #{name}"
+    else
+      @type2 << train
+      puts "Прибыл пассажирский поезд #{train.number} на станцию #{name}"
+    end
   end
 
   def train_out(train)
-    puts "Отправлен поезд #{train.number} со станции #{name}" if @trains.delete(train)
+    puts "Отправлен поезд #{train.number} со станции #{name}" if @type1.delete(train) || @type2.delete(train)
   end
 
-  def list_trains_by_type(type)
-    trains_to_list = []
-    @trains.each do |train|
-      trains_to_list << train if train.type == type
+  def train_list(type="All")
+    if type == "G"
+      puts "Список грузовых поездов: #{@type1}"
+    elsif type == "P"
+      puts "Список пассажирских поездов: #{@type2}"
+    else
+      puts "Полный список поездов на станции #{@type1}, #{@type2}"
     end
-    puts "Список поездов по типу(#{type}) - #{trains_to_list.length}:"
-    trains_to_list.each { |train| puts "#{train.number}"}
   end
+
+
 end
 
-
 class Route
-  attr_reader :set_route
+  attr_reader :route
 
   def initialize (from, to)
-    @set_route = [from, to]
+    @route = [from, to]
   end
 
-  def add_to_route(station)
-    @set_route.insert(-2,station)
+  def add_station(station)
+    @route.insert(-2,station)
   end
 
-  def del_from_route(station)
-    @set_route.delete(station) if station != @set_route.first && station != @set_route.last
+  def del_station(station)
+    @route.delete(station) unless [@route.first, @route.last].include?(station)
   end
 
   def all_route
-    puts "Полный маршрут с указанием станций: #{set_route}"
+    puts "Полный маршрут с указанием станций: #{route}"
   end
 end
 
@@ -74,28 +84,40 @@ class Train
   end
 
   def take_route(route)
-    @route = route.set_route
+    @route = route.route
     @current_station = @route.first
     puts "Поезд находится на станции #{@current_station} и следует марщруту #{@route.first} - #{@route.last}"
   end
 
-  def print_next_station
-    @next_station = route[route.index(current_station) + 1] if current_station != @route.last
-    puts @next_station
+  def next_station
+    @next_station = @route[@route.index(@current_station) + 1] if @current_station != @route.last
   end
 
-  def print_prev_station
-    @prev_station = route[route.index(current_station) - 1] if current_station != @route.first
-    puts @prev_station
+  def prev_station
+    @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
+  end
+
+  def print_train_position
+    if prev_station.nil? == true
+      puts "Поезд находится на начальной станции"
+    else
+      puts "Предыдущая станция #{@prev_station}"
+    end
+
+    puts "Текущая станция #{@current_station}"
+
+    if next_station.nil? == true
+      puts "Поезд находится на конечной станции"
+    else
+      puts "Следующая станция станция #{@next_station}"
+    end
   end
 
   def go_next_station
-    @next_station = route[route.index(current_station) + 1] if current_station != @route.last
     @current_station = @next_station
   end
 
   def go_prev_station
-    @prev_station = route[route.index(current_station) - 1] if current_station != @route.first
     @current_station = @prev_station
   end
 end
