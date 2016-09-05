@@ -22,16 +22,16 @@ class Station
   end
 
   def train_out(train)
-    puts "Отправлен поезд #{train.number} со станции #{name}" if @type1.delete(train) || @type2.delete(train)
+    puts "Отправлен поезд #{train.number} со станции #{name}" if @cargo.delete(train) || @passenger.delete(train)
   end
 
   def train_list(type=nil)
-    if type == 'G'
-      puts "Список грузовых поездов: #{@type1}"
+    if type == 'C'
+      puts "Список грузовых поездов: #{@cargo}"
     elsif type == 'P'
-      puts "Список пассажирских поездов: #{@type2}"
+      puts "Список пассажирских поездов: #{@passenger}"
     else
-      puts "Полный список поездов на станции #{@type1}, #{@type2}"
+      puts "Полный список поездов на станции #{@cargo}, #{@passenger}"
     end
   end
 
