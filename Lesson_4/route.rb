@@ -16,4 +16,5 @@ class Route
   def all_route
     puts "Полный маршрут с указанием станций: #{route}"
   end
+
 end

@@ -34,4 +34,5 @@ class Station
       puts "Полный список поездов на станции #{@cargo}, #{@passenger}"
     end
   end
+
 end

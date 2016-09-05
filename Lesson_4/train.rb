@@ -66,4 +66,5 @@ class Train
   def go_prev_station
     @current_station = @prev_station
   end
+  
 end
