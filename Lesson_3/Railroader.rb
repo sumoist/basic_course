@@ -3,18 +3,20 @@ class Station
 
   def initialize(name)
     @name = name
-    @type1= []  #G - грузовой
-    @type2= []  #P - пассажирский
+    @cargo = []       #C - грузовой
+    @passenger = []   #P - пассажирский
+    @trains = @cargo + @passenger
   end
 
   def train_in(train)
-    if @type1.include?(train) || @type2.include?(train)
+
+    if @trains.include?(train)
       puts 'Поезд с таким номером уже на станции!'
-    elsif train.type == 'G'
-      @type1 << train
+    elsif train.type == 'C'
+      @cargo << train
       puts "Прибыл грузовой поезд #{train.number} на станцию #{name}"
     else
-      @type2 << train
+      @passenger << train
       puts "Прибыл пассажирский поезд #{train.number} на станцию #{name}"
     end
   end
@@ -23,7 +25,7 @@ class Station
     puts "Отправлен поезд #{train.number} со станции #{name}" if @type1.delete(train) || @type2.delete(train)
   end
 
-  def train_list(type='All')
+  def train_list(type=nil)
     if type == 'G'
       puts "Список грузовых поездов: #{@type1}"
     elsif type == 'P'
@@ -92,24 +94,28 @@ class Train
   def next_station
     @next_station = @route[@route.index(@current_station) + 1] if @current_station != @route.last
   end
-  
+
   def prev_station
     @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
   end
 
-  def print_train_position
+  def print_prev_station
     if prev_station.nil? == true
       puts 'Поезд находится на начальной станции'
     else
-      puts "Предыдущая станция #{@prev_station}"
+      puts "Предыдущая станция #{prev_station}"
     end
+  end
 
+  def print_current_station
     puts "Текущая станция #{@current_station}"
+  end
 
+  def print_next_station
     if next_station.nil? == true
       puts 'Поезд находится на конечной станции'
     else
-      puts "Следующая станция станция #{@next_station}"
+      puts "Следующая станция станция #{next_station}"
     end
   end
 
