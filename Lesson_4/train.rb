@@ -66,5 +66,13 @@ class Train
   def go_prev_station
     @current_station = @prev_station
   end
-  
+
+end
+
+class PassengerTrain < Train
+
+end
+
+class CargoTrain < Train
+
 end
