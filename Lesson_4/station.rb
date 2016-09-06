@@ -9,7 +9,6 @@ class Station
   end
 
   def train_in(train)
-
     if @trains.include?(train)
       puts 'Поезд с таким номером уже на станции!'
     elsif train.type == 'cargo'
@@ -34,5 +33,4 @@ class Station
       puts "Полный список поездов на станции #{@cargo}, #{@passenger}"
     end
   end
-
 end

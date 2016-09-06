@@ -68,5 +68,4 @@ class Train
   def prev_station
     @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
   end
-
 end
