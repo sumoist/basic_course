@@ -3,8 +3,8 @@ class Station
 
   def initialize(name)
     @name = name
-    @cargo = []       #C - грузовой
-    @passenger = []   #P - пассажирский
+    @cargo = []
+    @passenger = []
     @trains = @cargo + @passenger
   end
 
@@ -12,7 +12,7 @@ class Station
 
     if @trains.include?(train)
       puts 'Поезд с таким номером уже на станции!'
-    elsif train.type == 'C'
+    elsif train.type == 'cargo'
       @cargo << train
       puts "Прибыл грузовой поезд #{train.number} на станцию #{name}"
     else
@@ -26,9 +26,9 @@ class Station
   end
 
   def train_list(type=nil)
-    if type == 'C'
+    if type == 'cargo'
       puts "Список грузовых поездов: #{@cargo}"
-    elsif type == 'P'
+    elsif type == 'passenger'
       puts "Список пассажирских поездов: #{@passenger}"
     else
       puts "Полный список поездов на станции #{@cargo}, #{@passenger}"

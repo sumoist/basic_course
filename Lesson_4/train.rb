@@ -1,10 +1,10 @@
 class Train
   attr_reader :number, :type, :carriages, :speed
 
-  def initialize(number, type, carriages)
+  def initialize(number, type)
     @number = number
     @type = type
-    @carriages = carriages
+    @carriages = []
     @speed = 0
   end
 
@@ -17,26 +17,18 @@ class Train
     @speed = 0 if @speed < 0
   end
 
-  def add_carriage
-    @carriages += 1 if @speed == 0
+  def add_carriage(carriage)
+    @carriages << carriage if type == carriage.type && @speed == 0
   end
 
   def del_carriage
-    @carriages -= 1 if @speed == 0 && @carriages > 0
+    @carriages.delete_at(-1) if @speed == 0
   end
 
   def take_route(route)
     @route = route.route
     @current_station = @route.first
     puts "Поезд находится на станции #{@current_station} и следует марщруту #{@route.first} - #{@route.last}"
-  end
-
-  def next_station
-    @next_station = @route[@route.index(@current_station) + 1] if @current_station != @route.last
-  end
-
-  def prev_station
-    @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
   end
 
   def print_prev_station
@@ -67,12 +59,14 @@ class Train
     @current_station = @prev_station
   end
 
-end
+  private
 
-class PassengerTrain < Train
+  def next_station
+    @next_station = @route[@route.index(@current_station) + 1] if @current_station != @route.last
+  end
 
-end
-
-class CargoTrain < Train
+  def prev_station
+    @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
+  end
 
 end
