@@ -1,11 +1,17 @@
 class Train
+  require_relative 'modules'
+  include Company
+
   attr_reader :number, :type, :carriages, :speed
+
+  @@trains = {}
 
   def initialize(number, type)
     @number = number
     @type = type
     @carriages = []
     @speed = 0
+    @@trains[number] = self
   end
 
   def speed_up(speed)
@@ -68,4 +74,9 @@ class Train
   def prev_station
     @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
   end
+
+  def self.find(number)
+    @@trains[number]
+  end
+
 end

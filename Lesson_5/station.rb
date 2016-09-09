@@ -1,9 +1,12 @@
 class Station
   attr_reader :name
 
+ @@stations = []
+
   def initialize(name)
     @name = name
     @trains = Hash.new { |hash, key| hash[key] = [] }
+    @@stations << self
   end
 
   def train_in(train)
@@ -26,4 +29,9 @@ class Station
       puts "Список поездов указанного типа: #{@trains[type]}"
     end
   end
+
+  def self.all
+    @@stations
+  end
+
 end
