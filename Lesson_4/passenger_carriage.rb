@@ -1,6 +1,6 @@
 class PassengerCarriage < Carriage
 
   def initialize
-    super ('passenger')
+    super (:passenger)
   end
 end

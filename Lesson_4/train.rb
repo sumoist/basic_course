@@ -18,11 +18,11 @@ class Train
   end
 
   def add_carriage(carriage)
-    @carriages << carriage if type == carriage.type && @speed == 0
+    @carriages << carriage if @type == carriage.type && @speed == 0
   end
 
   def del_carriage
-    @carriages.delete_at(-1) if @speed == 0
+    @carriages.pop if @speed == 0
   end
 
   def take_route(route)
