@@ -1,7 +1,7 @@
 class Train
   include Company
 
-  attr_reader :number, :carriages, :speed, :type
+  attr_reader :number, :carriages, :speed
 
   @@trains = {}
 
@@ -9,7 +9,7 @@ class Train
     @number = number
     @carriages = []
     @speed = 0
-    @type = type
+    @@trains[@type] = { number => self }
   end
 
   def speed_up(speed)
@@ -73,7 +73,8 @@ class Train
     @prev_station = @route[@route.index(@current_station) - 1] if @current_station != @route.first
   end
 
-  def self.find(number, type)
+  def self.find(number)
+    return unless self.respond_to?(:type)
     @@trains[type][number]
   end
 end

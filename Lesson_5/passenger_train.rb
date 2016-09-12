@@ -1,8 +1,14 @@
 class PassengerTrain < Train
 
+  TYPE = :passenger
+
   def initialize(number)
+    @type = self.class.type
     super
-    @type = :passenger
-    @@trains[type] = {number => self}
   end
+
+  def self.type
+    TYPE
+  end
+
 end
