@@ -1,12 +1,9 @@
-require_relative 'company'
-
 class Train
   include Company
 
   attr_reader :number, :carriages, :speed, :type
 
   @@trains = {}
-
 
   def initialize(number)
     @number = number
@@ -79,5 +76,4 @@ class Train
   def self.find(number, type)
     @@trains[type][number]
   end
-
 end
