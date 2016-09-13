@@ -1,15 +1,19 @@
 class Train
   include Company
+  include Validator
 
   attr_reader :number, :carriages, :speed
 
   @@trains = {}
+
+  TRAIN_NUMBER = /^[а-яa-z0-9]{3}-?[а-яa-z0-9]{2}$/i
 
   def initialize(number)
     @number = number
     @carriages = []
     @speed = 0
     @@trains[@type] = { number => self }
+    validate!
   end
 
   def speed_up(speed)
@@ -76,5 +80,11 @@ class Train
   def self.find(number)
     return unless self.respond_to?(:type)
     @@trains[type][number]
+  end
+
+  def validate!
+    raise 'Номер поезда не может быть пустым' if number.nil?
+    raise 'Неправильный формат номера, должен быть: ХХХ-ХХ или ХХХХХ' if number !~ TRAIN_NUMBER
+    true
   end
 end
