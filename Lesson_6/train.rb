@@ -6,7 +6,7 @@ class Train
 
   @@trains = {}
 
-  TRAIN_NUMBER = /^[а-яa-z0-9]{3}-?[а-яa-z0-9]{2}$/i
+  TRAIN_NUMBER = /^[а-яёa-z0-9]{3}-?[а-яёa-z0-9]{2}$/i
 
   def initialize(number)
     @number = number
