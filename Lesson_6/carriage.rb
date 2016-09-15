@@ -9,6 +9,8 @@ class Carriage
     validate!
   end
 
+  private
+
   def validate!
     raise 'Неправильный тип вагона' unless [CargoTrain::TYPE, PassengerTrain::TYPE].include? type.to_sym
     true

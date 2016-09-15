@@ -5,6 +5,8 @@ class Route
 
   def initialize (from, to)
     @route = [from, to]
+    puts from
+    puts to
     validate!
   end
 
@@ -23,9 +25,7 @@ class Route
   private
 
   def validate!
-#    raise "Название вагона не может быть пустым" if carriage_number.nil?
-#    raise "Название вагона должно содержать не меньше 6 символов" if carriage_number.length < 6
-#    raise "Использован неправильный формат" if carriage_number !~ NUMBER_FORMAT
-#    true
+    raise "Название станции не может быть пустым" if @route.include?("")
+    true
   end
 end

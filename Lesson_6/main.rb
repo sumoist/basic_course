@@ -18,15 +18,20 @@ begin
   number = gets.chomp.to_s
   puts 'Выберите тип поезда: 1-грузовой; 2-пассажирский'
   type = gets.chomp.to_i
-  if type == 1
-    train = CargoTrain.new(number)
-  elsif type == 2
-    train = PassengerTrain.new(number)
+  train_class = case type
+  when 1
+    CargoTrain
+  when 2
+    PassengerTrain
   else
     raise 'Указано неверное значение типа'
   end
+
+  train = train_class.new(number)
+
 rescue RuntimeError => e
   puts "Ошибка: #{e}"
   retry
 end
+
 puts "Создан поезд #{train} с номером #{number}"
