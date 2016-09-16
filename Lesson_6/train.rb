@@ -36,7 +36,6 @@ class Train
   def take_route(route)
     @route = route.route
     @current_station = @route.first
-    puts "Поезд находится на станции #{@current_station} и следует марщруту #{@route.first} - #{@route.last}"
   end
 
   def print_prev_station
@@ -52,7 +51,7 @@ class Train
   end
 
   def print_next_station
-    if next_station.nil? == true
+    if next_station.nil?
       puts 'Поезд находится на конечной станции'
     else
       puts "Следующая станция станция #{next_station}"

@@ -18,7 +18,7 @@ class Route
     @route.delete(station) unless [@route.first, @route.last].include?(station)
   end
 
-  def all_route
+  def print_all_route
     puts "Полный маршрут с указанием станций: #{@route}"
   end
 
