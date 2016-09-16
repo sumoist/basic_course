@@ -1,16 +1,16 @@
 #modules
-require_relative 'company'
-require_relative 'validator'
+require_relative 'modules/company'
+require_relative 'modules/validator'
 #classes
-require_relative 'route'
-require_relative 'station'
-require_relative 'train'
-require_relative 'carriage'
+require_relative 'classes/route'
+require_relative 'classes/station'
+require_relative 'classes/train/train'
+require_relative 'classes/carriage/carriage'
 #subclasses
-require_relative 'cargo_train'
-require_relative 'passenger_train'
-require_relative 'cargo_carriage'
-require_relative 'passenger_carriage'
+require_relative 'classes/train/cargo_train'
+require_relative 'classes/train/passenger_train'
+require_relative 'classes/carriage/cargo_carriage'
+require_relative 'classes/carriage/passenger_carriage'
 
 
 begin
