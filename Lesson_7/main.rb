@@ -2,8 +2,8 @@
 require_relative 'modules/company'
 require_relative 'modules/validator'
 #classes
-require_relative 'classes/route'
-require_relative 'classes/station'
+require_relative 'classes/route/route'
+require_relative 'classes/station/station'
 require_relative 'classes/train/train'
 require_relative 'classes/carriage/carriage'
 #subclasses
