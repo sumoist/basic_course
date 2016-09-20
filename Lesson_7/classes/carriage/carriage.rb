@@ -2,10 +2,11 @@ class Carriage
   include Company
   include Validator
 
-  attr_reader :type
+  attr_reader :type, :number
 
   def initialize(type)
     @type = type
+    @number = rand(1..9999)
     validate!
   end
 

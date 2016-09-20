@@ -19,24 +19,27 @@ class Station
       puts 'Этот поезд уже на станции!'
     else
       @trains[train.type] << train
-      puts "Прибыл поезд #{train.number} на станцию #{name}"
     end
   end
 
   def train_out(train)
-    puts "Отправлен поезд #{train.number} со станции #{name}" if @trains[train.type].delete(train)
+    @trains[train.type].delete(train)
   end
 
   def train_list(type=nil)
     if type.nil?
-      puts "Полный список поездов на станции #{@trains}"
+      puts "Cписок поездов на станции #{@name}: #{@trains}"
     else
-      puts "Список поездов указанного типа: #{@trains[type]}"
+      puts "Список поездов указанного типа на станции #{@name}: #{@trains[type]}"
     end
   end
 
   def self.all
     @@stations
+  end
+
+  def each_train(&block)
+    @trains.values.flatten.each { |trains| puts block.call(trains) } if block_given?
   end
 
   private

@@ -2,7 +2,7 @@ class Train
   include Company
   include Validator
 
-  attr_reader :number, :carriages, :speed
+  attr_reader :number, :carriages, :speed, :type
 
   @@trains = {}
 
@@ -64,6 +64,10 @@ class Train
 
   def go_prev_station
     @current_station = @prev_station
+  end
+
+  def each_carriage(&block)
+    @carriages.each { |carriage| puts block.call(carriage) } if block_given?
   end
 
   private

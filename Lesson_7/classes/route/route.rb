@@ -25,7 +25,7 @@ class Route
   private
 
   def validate!
-    raise "Название станции не может быть пустым" if @route.include?("")
+    raise 'Название станции не может быть пустым' if @route.include?("")
     true
   end
 end
