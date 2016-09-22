@@ -67,7 +67,11 @@ class Train
   end
 
   def each_carriage(&block)
-    @carriages.each { |carriage| puts block.call(carriage) } if block_given?
+    @carriages.each(&block)
+  end
+
+  def to_s
+    "Поезд номер:#{number}, тип:#{type}, кол-во вагонов:#{carriages.size}"
   end
 
   private

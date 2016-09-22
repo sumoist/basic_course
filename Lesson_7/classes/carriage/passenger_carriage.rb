@@ -1,6 +1,6 @@
 class PassengerCarriage < Carriage
 
-  attr_reader :used_seat, :free_seat
+  attr_reader :used_seat
 
   def initialize(seats)
     @seats = seats
@@ -14,5 +14,9 @@ class PassengerCarriage < Carriage
 
   def free_seat
     @free_seat = @seats - @used_seat
+  end
+
+  def to_s
+    "Вагон номер:#{number}, тип:#{type}, свободно:#{free_seat}"
   end
 end

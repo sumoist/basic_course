@@ -1,6 +1,6 @@
 class CargoCarriage < Carriage
 
-  attr_reader :used_bulk, :free_bulk
+  attr_reader :used_bulk
 
   def initialize(bulk)
     @bulk = bulk
@@ -10,10 +10,14 @@ class CargoCarriage < Carriage
 
   def take_bulk(bulk)
     @used_bulk += bulk if @used_bulk < @bulk
-    @used_bulk = @bulk if @used_bulk > @bulk
+    @used_bulk = @bulk if @used_bulk >= @bulk
   end
 
   def free_bulk
     @free_bulk = @bulk - @used_bulk
+  end
+
+  def to_s
+    "Вагон:#{number}, тип:#{type}, свободно:#{free_bulk}"
   end
 end

@@ -80,13 +80,9 @@ station2.train_in(outer_city2)
 begin
   Station.all.each do |station|
     puts "На станции #{station.name} находится:"
-    station.each_train do |x|
-      puts "Поезд номер:#{x.number}, тип:#{x.type}, с кол-вом вагонов:#{x.carriages.size}"
-      if x.type == :cargo
-        x.each_carriage {|x| puts "Вагон:#{x.number}, тип:#{x.type}, свободных:#{x.free_bulk}"}
-      else
-        x.each_carriage {|x| puts "Вагон номер:#{x.number}, тип:#{x.type}, свободных:#{x.free_seat}"}
-      end
+    station.each_train do |train|
+      puts "  #{train.to_s}"
+      train.each_carriage {|carriage| puts "    #{carriage}"}
     end
   end
 end

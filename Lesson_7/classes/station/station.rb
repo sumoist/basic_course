@@ -39,7 +39,7 @@ class Station
   end
 
   def each_train(&block)
-    @trains.values.flatten.each { |trains| puts block.call(trains) } if block_given?
+    @trains.values.flatten.each(&block)
   end
 
   private
