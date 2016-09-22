@@ -81,7 +81,7 @@ begin
   Station.all.each do |station|
     puts "На станции #{station.name} находится:"
     station.each_train do |train|
-      puts "  #{train.to_s}"
+      puts "  #{train}"
       train.each_carriage {|carriage| puts "    #{carriage}"}
     end
   end
