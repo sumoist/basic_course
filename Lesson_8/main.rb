@@ -1,7 +1,6 @@
 # modules
 require_relative 'modules/company'
-require_relative 'modules/validation'
-require_relative 'modules/acessors'
+require_relative 'modules/validator'
 # classes
 require_relative 'models/route/route'
 require_relative 'models/station/station'
