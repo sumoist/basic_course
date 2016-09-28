@@ -11,10 +11,10 @@ class Station
 
   validate :name, :presence
   validate :name, :format, NAME_FORMAT
-  validate :type_class, :type, 'Station'
+  validate :attr_class, :type, 'Station'
 
   def initialize(name)
-    @type_class = self.class
+    @attr_class = self.class.to_s
     @name = name
     @trains = Hash.new { |hash, key| hash[key] = [] }
     @@stations << self

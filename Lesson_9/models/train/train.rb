@@ -15,7 +15,7 @@ class Train
   validate :type_class, :type, 'Train'
 
   def initialize(number)
-    @type_class = self.class
+    @type_class = self.class.to_s
     @number = number
     @carriages = []
     @speed = 0

@@ -8,7 +8,7 @@ class Route
   validate :type_class, :type, 'Route'
 
   def initialize(from, to)
-    @type_class = self.class
+    @type_class = self.class.to_s
     @route = [from, to]
     validate!
   end
