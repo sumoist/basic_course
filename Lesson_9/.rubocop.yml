@@ -1,0 +1,21 @@
+AllCops:
+
+  Include:
+    - './'
+  Exclude:
+    - 'main.rb'
+
+  DisplayCopsNames: true
+  StyleGuideCopsOnly: false
+
+Metrics/LineLength:
+  Max: 150
+
+Metrics/AbcSize:
+  Max: 20
+
+Style/ClassVars:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
