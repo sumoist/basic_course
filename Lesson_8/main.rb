@@ -2,38 +2,15 @@
 require_relative 'modules/company'
 require_relative 'modules/validator'
 # classes
-require_relative 'classes/route/route'
-require_relative 'classes/station/station'
-require_relative 'classes/train/train'
-require_relative 'classes/carriage/carriage'
+require_relative 'models/route/route'
+require_relative 'models/station/station'
+require_relative 'models/train/train'
+require_relative 'models/carriage/carriage'
 # subclasses
-require_relative 'classes/train/cargo_train'
-require_relative 'classes/train/passenger_train'
-require_relative 'classes/carriage/cargo_carriage'
-require_relative 'classes/carriage/passenger_carriage'
-
-# begin
-#   puts 'Enter train number'
-#   number = gets.chomp.to_s
-#   puts 'Enter train type: 1-cargo; 2-passenger'
-#   type = gets.chomp.to_i
-#   train_class = case type
-#   when 1
-#     CargoTrain
-#   when 2
-#     PassengerTrain
-#   else
-#     raise 'Wrong train type!'
-#   end
-#
-#   train = train_class.new(number)
-#
-# rescue RuntimeError => e
-#   puts "Error: #{e}"
-#   retry
-# end
-#
-# puts "The train #{train} was created with number #{number}"
+require_relative 'models/train/cargo_train'
+require_relative 'models/train/passenger_train'
+require_relative 'models/carriage/cargo_carriage'
+require_relative 'models/carriage/passenger_carriage'
 
 station1 = Station.new('Station1')
 station2 = Station.new('Station2')
@@ -74,12 +51,40 @@ station2.train_in(big_train2)
 station2.train_in(inter_city2)
 station2.train_in(outer_city2)
 
-begin
-  Station.all.each do |station|
-    puts "На станции #{station.name} находится:"
-    station.each_train do |train|
-      puts "  #{train}"
-      train.each_carriage { |carriage| puts "    #{carriage}" }
-    end
-  end
-end
+# Test case for Lesson_9
+
+
+# Test case for Lesson_8
+# begin
+#   Station.all.each do |station|
+#     puts "На станции #{station.name} находится:"
+#     station.each_train do |train|
+#       puts "  #{train}"
+#       train.each_carriage { |carriage| puts "    #{carriage}" }
+#     end
+#   end
+# end
+
+# test case for Lesson_7
+# begin
+#   puts 'Enter train number'
+#   number = gets.chomp.to_s
+#   puts 'Enter train type: 1-cargo; 2-passenger'
+#   type = gets.chomp.to_i
+#   train_class = case type
+#   when 1
+#     CargoTrain
+#   when 2
+#     PassengerTrain
+#   else
+#     raise 'Wrong train type!'
+#   end
+#
+#   train = train_class.new(number)
+#
+# rescue RuntimeError => e
+#   puts "Error: #{e}"
+#   retry
+# end
+#
+# puts "The train #{train} was created with number #{number}"
