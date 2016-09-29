@@ -43,6 +43,8 @@ t.c = 22
 puts "t.c = 22 => #{t.c}"
 # t.c = 'test_string_value'  #ошибка, т.к формат Fixnum
 puts 'test validation-------------------------------------'
+s = Station.new('Теремки')
+puts s.valid?
 # s = Station.new('') #ошибка, пустое значение
 # s = Station.new('12**') #ошибка формата
 

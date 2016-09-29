@@ -38,7 +38,7 @@ module Validation
     protected
 
     def presence(var_to_check, _args)
-      raise 'Значение атрибута не должно быть пустым' if var_to_check.nil? || var_to_check.empty? || var_to_check.include?('')
+      raise 'Значение атрибута не должно быть пустым' if var_to_check.nil? || var_to_check.empty?
     end
 
     def format(var_to_check, format)
