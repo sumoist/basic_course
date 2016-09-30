@@ -7,19 +7,20 @@ module Validation
 
   # ClassMethods
   module ClassMethods
-    attr_accessor :rules
+    attr_accessor :validations
 
     def validate(name, type, args = '')
-      self.rules ||= []
+      self.validations ||= []
       rule = { type => { name: name, args: args } }
-      rules << rule
+      validations << rule
     end
   end
 
   # InstanceMethods
   module InstanceMethods
     def validate!
-      self.class.rules.each do |rule|
+      validations = self.class.validations
+      validations.each do |rule|
         rule.each do |type, params|
           var_to_check = get_instance_var_by_name(params[:name])
           send(type, var_to_check, params[:args])

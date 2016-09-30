@@ -8,14 +8,18 @@ module Accessors
   module ClassMethods
     def attr_accessor_with_history(*args)
       args.each do |name|
-        arg = "@#{name}".to_sym
+        arg     = "@#{name}".to_sym
         history = "@#{name}_history".to_sym
+
         define_method(name) { instance_variable_get(arg) }
+        define_method("#{name}_history") { instance_variable_get(history) || [] }
+
         define_method("#{name}=") do |value|
-          instance_variable_get(history).nil? ? instance_variable_set(history, []) : instance_variable_get(history) << instance_variable_get(arg)
+          history_value = send("#{name}_history").push(send(name))
+          instance_variable_set(history, history_value)
+
           instance_variable_set(arg, value)
         end
-        define_method("#{name}_history") { instance_variable_get history }
       end
     end
 
