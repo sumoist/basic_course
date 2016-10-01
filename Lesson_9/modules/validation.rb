@@ -26,13 +26,12 @@ module Validation
           send(type, var_to_check, params[:args])
         end
       end
-      true
     end
 
     def valid?
       validate!
     rescue
-      false
+      true
     end
 
     protected

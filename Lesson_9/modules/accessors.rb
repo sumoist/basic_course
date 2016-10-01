@@ -28,7 +28,11 @@ module Accessors
       define_method(name) { instance_variable_get(arg) }
 
       define_method("#{name}=") do |value|
-        value.is_a?(type) ? instance_variable_set(arg, value) : raise("Ошибка в типе: #{arg}")
+        if value.is_a?(type)
+          instance_variable_set(arg, value)
+        else
+          raise ArgumentError, "Ошибка в типе аргумента: #{arg}"
+        end
       end
     end
   end
